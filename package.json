@@ -1,0 +1,76 @@
+{
+  "name": "selfcertbot",
+  "version": "0.0.1",
+  "description": "A tool for conveniently self-signing certificates for development.",
+  "author": "SamJakob <me@samjakob.com>",
+  "bin": "./bin/run",
+  "homepage": "https://github.com/SamJakob/selfcertbot",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "SamJakob/selfcertbot",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^1.16.1",
+    "@oclif/plugin-help": "^5.1.12",
+    "@oclif/plugin-plugins": "^2.1.0",
+    "@types/inquirer": "^8",
+    "chalk": "^4",
+    "inquirer": "^8",
+    "ora": "^5"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.1.1",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^16.11.58",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "chai": "^4.3.6",
+    "eslint": "8.22.0",
+    "globby": "^11.1.0",
+    "mocha": "^10.0.0",
+    "oclif": "^3.2.0",
+    "shx": "^0.3.4",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.3"
+  },
+  "oclif": {
+    "bin": "selfcertbot",
+    "dirname": "selfcertbot",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "certificate": {
+        "description": "Commands relating to signing certificates."
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/SamJakob/selfcertbot/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts",
+  "packageManager": "yarn@3.2.3"
+}
